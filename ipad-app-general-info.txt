@@ -1,0 +1,28 @@
+iPad App
+
+Stack:
+Swift
+SwiftUI
+sqlite
+
+Upon scan write the following to a table:
+time of scan 
+card bits info
+gps coordinates
+which card reader is doing the scanning (card reader name / portal ID / bus ID)
+
+Howd to get the bits (possible 3rd party equiment for both rfid and camera):
+camera for QR visitors codes
+rfid for regular 
+
+bus lines:
+dumbo 
+atlantic terminal AM
+atlantic terminal PM
+the circuit 
+
+Note:
+	it is basically a table writer
+	node handles authentication
+
+The app will use the iPads camera to scan in the QR code.
