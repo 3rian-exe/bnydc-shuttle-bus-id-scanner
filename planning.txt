@@ -1,0 +1,37 @@
+-login.py
+	For logging in and out.
+	DONE.
+	
+- scan_card.py / scan_qr_code.py
+	Takes in the card number.
+	Finds the bit lenghth.
+	Loops through each FC bit mask based on the bit length.
+	Finds an FC match and retrieves the corrisponding card format.
+	Extracts the hotstamp.
+	Scans the QR and extracts the hotstamp.
+
+- get_actdate_expdate.py
+	Makes an API call to S2 with the hotstamp.
+	Verify card format.
+	Finds the ACTDATE, EXPDATE (if it exists).
+
+- get_eligiblity.py
+	Determine if the current date and time is greater than ACTDATE, and less than EXPDATE (if it exists).
+
+- insert_portal_activity.py
+	Make a post request to the S2 API (person was granted/denied access to portal).
+
+- 
+	Based on that set green led for 3 sec for go or red for no go.
+	
+Todo:
+	Add config.json for all Python scripts that require logging into S2
+	Write a script that makes an API requiest every 10 seconds with the same session ID and record how long it lasts (time and number of requests).
+	Finish control flow of scan_card.py
+	Figure out mobile scans
+	Visitor pass QR scans
+	DONE - Fix insert activity perms
+
+Possible edge cases:
+	Differenciate between QR scan and RFID scan
+	
