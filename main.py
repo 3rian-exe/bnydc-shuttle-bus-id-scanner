@@ -3,7 +3,7 @@ from passenger import Passenger
 import datetime
 import json
 from login_logout_s2 import login, logout
-
+from blink_led import blink_green, blink_red
 
 #*******************************************************************************
 def setup():
@@ -29,10 +29,11 @@ def loop(session_id: str, portal_id: str) -> None:
         insert_activity(session_id, passenger_scan)
         if passenger_scan.access:
             # Beep and set led to green for 2 seconds.
+            blink_green(2)
             print("Green")
-            pass
         else:
             # Alt beep set led to green for 1.5 seconds.
+            blink_red(1.5)
             print("Red")
             pass
 #*******************************************************************************
