@@ -3,7 +3,7 @@ from passenger import Passenger
 import datetime
 import json
 from login_logout_s2 import login, logout
-from blink_led import blink_green, blink_red
+from led import blink_green, blink_red
 
 #*******************************************************************************
 def setup():
@@ -11,9 +11,10 @@ def setup():
     session_id = login()
     portal_id = "TEST BUS PORTAL"
 
-    # Get the shuttle bus start and end hours for that day.
-    shuttle_bus_start_date_time = None
-    shuttle_bus_end_date_time = None
+    # Shuttle bus start and end hours for weekdays.
+    # Bus schedule: Mon-Fri, 5:00-22:30
+    shuttle_bus_start_date_time = datetime.time(5, 0, 0)
+    shuttle_bus_end_date_time = datetime.time(22, 30, 0)
 
     return session_id, portal_id, shuttle_bus_start_date_time, shuttle_bus_end_date_time
 #*******************************************************************************
@@ -35,25 +36,26 @@ def loop(session_id: str, portal_id: str) -> None:
             # Alt beep set led to green for 1.5 seconds.
             blink_red(1.5)
             print("Red")
-            pass
 #*******************************************************************************
 
 
 
 # Main
-session_id, portal_id, start_time, end_time = setup()
-
-# Bus schedule: Mon-Fri, 5:00-22:30
+session_id, portal_id, service_start_time, service_end_time = setup()
+# Gets an integer representing the current day of the week. 0 = Monday, 
+# 1 = Tuesday, ..., 4 = Friday
 weekday = datetime.datetime.today().weekday()
-service_start_time = datetime.time(5, 0, 0)
-service_end_time =  datetime.time(22, 30, 0)
 
+# Keep calling the loop function while it's a work day and between the 
+# hours of 5:00AM to 10:30PM (22:30).
 while (weekday >= 0 and weekday <= 4) and (datetime.datetime.now().time() >= service_start_time and datetime.datetime.now().time() < service_end_time):
-    # loop(session_id, portal_id)
     try:
         loop(session_id, portal_id)
+    except KeyboardInterrupt:
+        break
     except Exception as e:
         print(e)
         break
 
 logout(session_id)
+print(f"\nSession id: {session_id} has been logged out.")
