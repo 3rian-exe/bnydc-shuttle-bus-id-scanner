@@ -142,7 +142,7 @@ def get_passenger_details(passenger_data: dict, portal_id: str) -> Passenger:
 
     # Get the passengers name.
     passenger_name = passenger_data['FIRSTNAME'] + " " + passenger_data['LASTNAME']
-    
+    passenger_personID = passenger_data['PERSONID']
     # Get the passengers ID card (or visitor pass) activation date.
     passenger_activation_date = datetime.datetime.strptime(passenger_data['ACTDATE'], "%Y-%m-%d %H:%M:%S")
 
@@ -163,7 +163,7 @@ def get_passenger_details(passenger_data: dict, portal_id: str) -> Passenger:
         if passenger_expiration_date <= current_date_time:
             passenger_access = False
 
-    return Passenger(passenger_access, passenger_name, portal_id, current_date_time)
+    return Passenger(passenger_access, passenger_name, portal_id, current_date_time,passenger_personID)
 #******************************************************************************
 
 
@@ -250,23 +250,51 @@ def get_eligibility(session_id: str, portal_id: str, input_scan: Union[Tuple[str
 # to be inserted into the s2 activity feed. The details are concatenated into
 # a sting which is then inserted into the activity feed as a user-defined 
 # activity text.
-def insert_activity(session_id: str, passenger: Passenger) -> str:
+def insert_activity(session_id: str, passenger: Passenger, encodednum) -> str:
     
     if passenger.access:
-        activity = "Access granted for " + passenger.name + " at " + passenger.access_portal
+          body = '''
+                <NETBOX-API sessionid="{session_id}"> 
+                    <COMMAND name="InsertActivity" num="1">
+                        <PARAMS>
+                            <ACTIVITYTYPE>ACCESSGRANTED</ACTIVITYTYPE>
+                            <PORTALKEY>{portal_key}</PORTALKEY>
+                            <PERSONID>{person_id}</PERSONID>
+                            <READERKEY>{reader_key}</READERKEY>
+                            <CARDFORMAT>{format}</CARDFORMAT>
+                            <ENCODEDNUM>{encodednum}</ENCODEDNUM>
+                        </PARAMS>
+                    </COMMAND>
+                </NETBOX-API>'''.format(session_id=session_id,
+                                        person_id=passenger.personId,
+                                        encodednum=encodednum,
+                                        portal_key= passenger.access_portal)
+                                        #reader_key = lastest_act['READERKEY'] # needs to be resolved ,
+                                        #format =  ) #Use brian code here
     else:
-        activity = "Access denied for " + passenger.name + " at " + passenger.access_portal
-
-    body = '''
-            <NETBOX-API sessionid="{session_id}"> 
-                <COMMAND name="InsertActivity" num="1">
-                    <PARAMS>
-                        <ACTIVITYTYPE>USERACTIVITY</ACTIVITYTYPE>
-                        <ACTIVITYTEXT>{activity_text}</ACTIVITYTEXT>
-                    </PARAMS>
-                </COMMAND>
-            </NETBOX-API>'''.format(session_id=session_id, activity_text=activity)
-
+    
+        body = '''
+                <NETBOX-API sessionid="{session_id}"> 
+                    <COMMAND name="InsertActivity" num="1">
+                        <PARAMS>
+                            <ACTIVITYTYPE>ACCESSDENIED</ACTIVITYTYPE>
+                            <DETAILS>TIME</DETAILS>
+                            <PORTALKEY>{portal_key}</PORTALKEY>
+                            <PERSONID>{person_id}</PERSONID>
+                            <READERKEY>{reader_key}</READERKEY>
+                            <CARDFORMAT>{format}</CARDFORMAT>
+                            <ENCODEDNUM>{encodednum}</ENCODEDNUM>
+                        </PARAMS>
+                    </COMMAND>
+                </NETBOX-API>'''.format(session_id=session_id,
+                                        person_id=passenger.personId,
+                                        encodednum=encodednum,
+                                        portal_key= passenger.access_portal)
+                                        #reader_key = lastest_act['READERKEY'] # needs to be resolved ,
+                                        #format =  ) #Use brian code here
+  
+  
+        
     response = post(endpoint_url, body, verify=False)
     response = response.content.decode("utf8")
     response = xmltodict.parse(response)
