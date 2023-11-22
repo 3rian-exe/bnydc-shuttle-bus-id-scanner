@@ -1,6 +1,7 @@
 from functions import validate_input, get_eligibility, insert_activity
 from passenger import Passenger
-import datetime
+#Might need to be set to EST timezone, this is because if htere is a change in the hours, it will automatically update it.
+import datetime 
 import json
 from login_logout_s2 import login, logout
 from led import blink_green, blink_red
