@@ -141,7 +141,10 @@ def get_passenger_details(passenger_data: dict, portal_id: str) -> Passenger:
     current_date_time = datetime.datetime.now() 
 
     # Get the passengers name.
+    # I think we might not need their first and last name, this is because in the insert activity looks like it doesnt require it.
     passenger_name = passenger_data['FIRSTNAME'] + " " + passenger_data['LASTNAME']
+
+    #Gets the passenger personID
     passenger_personID = passenger_data['PERSONID']
     # Get the passengers ID card (or visitor pass) activation date.
     passenger_activation_date = datetime.datetime.strptime(passenger_data['ACTDATE'], "%Y-%m-%d %H:%M:%S")

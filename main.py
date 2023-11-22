@@ -6,6 +6,17 @@ import json
 from login_logout_s2 import login, logout
 from led import blink_green, blink_red
 
+
+
+# #*********This is the datetime set to NYC ************
+# import datetime
+# import pytz
+
+
+# new_york_tz = pytz.timezone('America/New_York')
+# new_york_time = datetime.datetime.now(new_york_tz)
+# print(new_york_time)
+# 
 #*******************************************************************************
 def setup():
     # Get the sesion ID.
