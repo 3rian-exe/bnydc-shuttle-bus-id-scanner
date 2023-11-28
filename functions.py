@@ -6,6 +6,7 @@ import xmltodict
 from typing import Union, Tuple
 from requests import post
 from passenger import Passenger
+from icecream import ic
 
 urllib3.disable_warnings()
 
@@ -213,10 +214,23 @@ def get_eligibility(session_id: str, portal_id: str, input_scan: Union[Tuple[str
             if card_format != None and hotstamp != None:
                 hotstamp = str(int(hotstamp))
                 employee_data = get_person_with_hotstamp(session_id, hotstamp)
+
                 # If there's only one person.
                 if type(employee_data) == dict:
-                    if employee_data['ACCESSCARDS']['ACCESSCARD']['CARDFORMAT'] == card_format:
-                        return get_passenger_details(employee_data, portal_id)
+
+                    # If they have only one access card.
+                    if type(employee_data['ACCESSCARDS']['ACCESSCARD']) == dict:
+                        if employee_data['ACCESSCARDS']['ACCESSCARD']['CARDFORMAT'] == card_format:
+                            return get_passenger_details(employee_data, portal_id)
+                        else:
+                            return Passenger(False, 'UNKNOWN', portal_id, datetime.datetime.now())
+                        
+                    # If they have multiple access cards.
+                    elif type(employee_data['ACCESSCARDS']['ACCESSCARD']) == list:
+                        for access_card in employee_data['ACCESSCARDS']['ACCESSCARD']:
+                            if access_card['CARDFORMAT'] == card_format:
+                                return get_passenger_details(employee_data, portal_id)
+                        return Passenger(False, 'UNKNOWN', portal_id, datetime.datetime.now())
                     else:
                         return Passenger(False, 'UNKNOWN', portal_id, datetime.datetime.now())
 
@@ -226,17 +240,17 @@ def get_eligibility(session_id: str, portal_id: str, input_scan: Union[Tuple[str
                         access_cards = employee['ACCESSCARDS']
 
                         # This employee has multiple cards.
-                        if type(access_cards['ACCESSCARD']) == list:
-                            for card in access_cards['ACCESSCARD']:
-                                employee_card_format = card['CARDFORMAT']
-
+                        if type(employee['ACCESSCARDS']['ACCESSCARD']) == list:
+                            for access_card in employee['ACCESSCARDS']['ACCESSCARD']:
+                                
                                 # If this employees card format matches return.
-                                if employee_card_format == card_format:
+                                if access_card['CARDFORMAT'] == card_format:
                                     return get_passenger_details(employee, portal_id)
+                                
 
                         # This employee has only one card.
-                        elif type(access_cards['ACCESSCARD']) == dict:
-                            if access_cards['ACCESSCARD']['CARDFORMAT'] == card_format:
+                        elif type(employee['ACCESSCARDS']['ACCESSCARD']) == dict:
+                            if employee['ACCESSCARDS']['ACCESSCARD']['CARDFORMAT'] == card_format:
                                 return get_passenger_details(employee, portal_id)
 
                     # A card format match could not be found.
