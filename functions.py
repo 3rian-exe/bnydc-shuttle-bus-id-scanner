@@ -6,7 +6,6 @@ import xmltodict
 from typing import Union, Tuple
 from requests import post
 from passenger import Passenger
-from icecream import ic
 
 urllib3.disable_warnings()
 
