@@ -125,6 +125,7 @@ First, make sure you have a USB keyboard, HDMI cable (with appropriate adapters)
     And that's it for the input devices.
 
 4. Setting Up The Software Side Of Things On The Raspberry Pi
+       ** set static IP address
     1. SSH into your Pi and run `sudo apt update` once your Pi is updated, install git by running `sudo apt install git`. 
     2. SSH into your Pi and navigate to the directory where you want this project to live and clone this repo.
     3. Ask somebody for the config.json file and put that into projects directory. Once you have it locally on your pc, open a terminal and type `scp <sourceFilePath> <user>@<IPaddress>: <targetDestinationPath>`.
@@ -144,7 +145,7 @@ First, make sure you have a USB keyboard, HDMI cable (with appropriate adapters)
     5. Navigate to `home/<user>/` and open `.bashrc` with a text editor. Go all the way to the bottom and add the following: `sleep 20` and on the next line type `python /home/<user>/<projectDir>/main.py` (`pyhton /<fullPathTomain.py>`). Save and quit.
     6. Shutdown the Pi by typing `sudo shutdown -h now`, wait about 30 seconds and disconnect the power. Plug in the RFID reader, the barcode scanner, and an HDMI monitor. Plug the power in and verify that mian.py is automatically running. This could take some time as there is a delay to allow enough time for the wifi to connect. 
 
-5. Wiring Up The LEDs
+6. Wiring Up The LEDs
     1. From the breadboard holder kit get a green and red LED diode, the T-shaped GPIO extension board (![looks like this](https://github.com/3rian-exe/bnydc-shuttle-bus-id-scanner/main/image.jpg?raw=true)) along with 2, 1K resistors, and some jumper wires.
     2. Connect the T-shaped GPIO  extension board to the breadboard like (![this](https://github.com/3rian-exe/bnydc-shuttle-bus-id-scanner/main/image.jpg?raw=true))
     3. Connect a jumper wire from 'GND' to the minus row like (![this](https://github.com/3rian-exe/bnydc-shuttle-bus-id-scanner/main/image.jpg?raw=true))
