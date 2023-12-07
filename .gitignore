@@ -1,0 +1,8 @@
+__pycache__/
+config.json
+note_card_scan_stuff.txt
+old/
+rfid_reader_settings.txt
+test_time_zone.py
+testing/
+value read, Format, fc, encodednum.txt
