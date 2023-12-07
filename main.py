@@ -6,6 +6,7 @@ from login_logout_s2 import login, logout
 from led import blink_green, blink_red
 
 BUS_PORTAL = 'TEST_BUS'
+config_file_path = '/home/scanner/bus_id_scanner/config.json'
 
 #*******************************************************************************
 def setup(config_json_path: str):
@@ -54,7 +55,7 @@ def setup(config_json_path: str):
 
 #*******************************************************************************
 def loop(session_id: str, s2_endpoint_url: str, portal: dict, credential_formats: dict) -> None:
-        print(session_id) # Debugging purposes
+        print(session_id)
         input_scan = input("Tap RFID card or scan QR code: ").strip()
         validated_scan = validate_input(input_scan, credential_formats)
 
@@ -62,15 +63,17 @@ def loop(session_id: str, s2_endpoint_url: str, portal: dict, credential_formats
         insert_activity(session_id, s2_endpoint_url, passenger_scan, BUS_PORTAL)
         if passenger_scan.access:
             # Beep and set led to green for 2 seconds.
+            # print("Green")
             blink_green(2)
         else:
             # Alt beep set led to green for 1.5 seconds.
+            # print("Red")
             blink_red(1.5)
 #*******************************************************************************
 
 
 # Main
-session_id, shuttle_bus_operating_hours, s2_endpoint_url, portal, credential_formats = setup('/home/scanner/bus_id_scanner/config.json')
+session_id, shuttle_bus_operating_hours, s2_endpoint_url, portal, credential_formats = setup(config_file_path)
 # Gets an integer representing the current day of the week. 0 = Monday, 
 # 1 = Tuesday, ..., 4 = Friday
 weekday = datetime.datetime.today().weekday()
