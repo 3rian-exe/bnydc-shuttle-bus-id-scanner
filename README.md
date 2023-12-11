@@ -81,7 +81,7 @@ First, some supporting items that you'll need:
             2. Reading Mode: scan the `Continuous Mode` QR code.
 
 3. Setting Up The Software
-    - Note: To find the full or absolute path to a file in your current directory, navigate to the directory where the file resides and type ```readlink -f <fileName>```, replacing ```<fileName>``` with the actual name of the file you're trying to retrieve the absolute path to.
+    - Note: To find the full or absolute path to a file in your current working directory, type ```readlink -f <fileName>```, replacing ```<fileName>``` with the actual name of the file you're trying to retrieve the absolute path to.
     1. SSH into your Pi and update it by typing ```sudo apt update```, and hitting enter. Once your Pi is updated, install git by typing ```sudo apt install git``` and hitting enter.
     2. Navigate to the directory where you want this project to live and clone this repo by typing ```git clone <httpsLink>``` and replace ```<httpsLink>``` with the link you got from this repositories clone tab (found in this repository -> Code -> Local -> HTTPS). Hit enter and wait for it all to download.
     3. Ask somebody for the config.json file. Once you have it locally on your pc, open a terminal and type ```scp <configFilePath/config.json> <user>@<IPaddress>: <targetDestinationPath>```, replacing ```<configFilePath/config.json>``` with where the config.json file is stored on your local machine, replacing ```<user>@<IPaddress>``` with the same credentials as when you normally SSH in, and replacing ``` <targetDestinationPath>``` with the path to the cloned repository directory. Once you hit enter, you will be prompted for a password, which is the same as if you SSH in like usual.
