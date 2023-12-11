@@ -8,10 +8,10 @@ An access control device that scans an employee or tenant's RFID badge along wit
 Using off-the-shelf components, this project's goal is to be a cost-effective and self-contained device that is capable of scanning an employee or tenant's RFID badge or a visitor's Proxyclick QR code to determine their eligibility for the BNYDC shuttle bus. All of this is accomplished using the LenelS2 web API, Python 3, a Raspberry Pi 3, a generic USB 125kHz RFID reader, and a generic USB barcode scanner. At this time, the HID mobile application is not compatible with this hardware.
 
 In this readme, I will run through:
-    1. The bill of materials
-    2. Setting up the hardware 
-    3. Setting up the software
-    4. Wiring the LEDs
+1. The bill of materials
+2. Setting up the hardware 
+3. Setting up the software
+4. Wiring the LEDs
 
 # Lets Get Started
 First, some supporting items that you'll need:
