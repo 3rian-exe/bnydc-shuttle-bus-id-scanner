@@ -16,7 +16,7 @@ In this readme, I will run through:
 # Lets Get Started
 First, some supporting items that you'll need:
 * USB Keyboard
-* Monitor with an HDMI port
+* Monitor with an HDMI port (or appropriate adapters)
 * HDMI Cable (with appropriate adapters if necessary)
 * Micro SD Card Reader
 * An Internet Connection
