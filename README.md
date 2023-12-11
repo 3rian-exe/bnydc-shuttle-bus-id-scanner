@@ -47,7 +47,7 @@ First, some supporting items that you'll need:
         5. Now you want to assign the device a static IP address. To do this, first make sure you SSH into your device. Then type ```sudo route -n``` and hit enter. Under `Gateway` you'll see an IP address. Write it down. Next, type ```sudo vim /etc/dhcpcd.conf``` and hit enter. Type ```i``` and hit enter to insert text. Now, on the first line type in ```interface wlan0```, on the second line type ```static ip_address=<static_IP_address>``` replace ```<static_IP_address>``` with your current IP address, on the third line type ```static routers=<gateway>``` and replace ```<gateway>``` with the gateway IP address you wrote down. On the fourth line, type ```static domain_name_servers=8.8.8.8 8.8.4.4```. In this case, I used Googles domain name, but you can change it to a different one if you'd like. Now hit Esc, and type ```:wq``` and hit enter. Next, restart by typing ```sudo reboot``` and hit enter. And that's it for this step.
 
     2. The USB RFID Reader
-        1. Open a text editor of your choice.
+        1. Open a text editor of your choice on your pc.
         2. Plug the RFID reader in and tap the config card that comes in the box.
         3. You should see the following being typed into your text editor: 
             ```support email  taylor@szjat.com.cn
