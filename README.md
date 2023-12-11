@@ -22,18 +22,18 @@ First, some supporting items that you'll need:
 * An Internet Connection
 
 1. Bill Of Materials (BOM):
-    * Raspberry Pi
-        - The following Raspberry Pi models are recommended for this project: Raspberry Pi 3, Raspberry Pi 4, or Raspberry Pi 5. The Raspberry Pi Zero W or Zero 2W is likely to work as well, but the lack of ports may become a limitation as the project progresses. The 1GB Raspberry Pi 4 is a solid choice for this projects needs. Any of the aforementioned hardware can be purchased from either [Pimoroni](https://shop.pimoroni.com/), [Adafriut](https://www.adafruit.com/), or most other hobby electronics retailers.
-    * Micro SD Card
-        - Any microSD card of 32GB or greater in size is recommended.
-    * RFID Reader 
-        - This [USB 125KHz RFID Reader](https://www.amazon.com/gp/product/B083KMYRZ5/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1) emulates a keyboard device and acts as the input device reading  all the RFID badge scans. 
-    * QR/Barcode Scanner
-        - This [USB 2D Embedded Mini Barcode Scanner](https://www.amazon.com/Embedded-Barcode-Scanner-Symcode-Computer/dp/B08SQBDT4W/ref=psdc_15327871_t1_B07CHGLY2W?th=1) also acts like a keyboard device and serves as the input device reading all the visitor QR code scans. 
-    * Power Adapter
-        - For the Raspberry Pi 3, you will need a 5V, 3Amp power supply with a micro USB cable. For the Raspberry Pi 4, you will need a 5V, 3Amp power supply with a USB-C cable. And for the Raspberry Pi 5, you will need a 5V, 5Amp power supply and a USB-C cable.
-    * (Optional for the current stage of the project) Breadboard Kit
-        - This [breadboard kit](https://www.amazon.com/gp/product/B07ZYR7R8X/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1) will make it easier to prototype the hardware aspects of this project, but it is not necessary as of yet. Note which Raspberry Pi it's compatible with when purchasing.
+    1. Raspberry Pi
+        * The following Raspberry Pi models are recommended for this project: Raspberry Pi 3, Raspberry Pi 4, or Raspberry Pi 5. The Raspberry Pi Zero W or Zero 2W is likely to work as well, but the lack of ports may become a limitation as the project progresses. The 1GB Raspberry Pi 4 is a solid choice for this projects needs. Any of the aforementioned hardware can be purchased from either [Pimoroni](https://shop.pimoroni.com/), [Adafriut](https://www.adafruit.com/), or most other hobby electronics retailers.
+    2. Micro SD Card
+        * Any microSD card of 32GB or greater in size is recommended.
+    3. RFID Reader 
+        * This [USB 125KHz RFID Reader](https://www.amazon.com/gp/product/B083KMYRZ5/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1) emulates a keyboard device and acts as the input device reading  all the RFID badge scans. 
+    4. QR/Barcode Scanner
+        * This [USB 2D Embedded Mini Barcode Scanner](https://www.amazon.com/Embedded-Barcode-Scanner-Symcode-Computer/dp/B08SQBDT4W/ref=psdc_15327871_t1_B07CHGLY2W?th=1) also acts like a keyboard device and serves as the input device reading all the visitor QR code scans. 
+    5. Power Adapter
+        * For the Raspberry Pi 3, you will need a 5V, 3Amp power supply with a micro USB cable. For the Raspberry Pi 4, you will need a 5V, 3Amp power supply with a USB-C cable. And for the Raspberry Pi 5, you will need a 5V, 5Amp power supply and a USB-C cable.
+    6. (Optional for the current stage of the project) Breadboard Kit
+        * This [breadboard kit](https://www.amazon.com/gp/product/B07ZYR7R8X/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1) will make it easier to prototype the hardware aspects of this project, but it is not necessary as of yet. Note which Raspberry Pi it's compatible with when purchasing.
 
 2. Setting up the hardware
     1. The Raspberry Pi
