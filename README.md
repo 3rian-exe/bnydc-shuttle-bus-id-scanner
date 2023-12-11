@@ -23,7 +23,7 @@ First, some supporting items that you'll need:
 
 1. Bill Of Materials (BOM):
     1. Raspberry Pi
-        * The following Raspberry Pi models are recommended for this project: Raspberry Pi 3, Raspberry Pi 4, or Raspberry Pi 5. The Raspberry Pi Zero W or Zero 2W is likely to work as well, but the lack of ports may become a limitation as the project progresses. The 1GB Raspberry Pi 4 is a solid choice for this projects needs. Any of the aforementioned hardware can be purchased from either [Pimoroni](https://shop.pimoroni.com/), [Adafriut](https://www.adafruit.com/), or most other hobby electronics retailers.
+        * The following Raspberry Pi models are recommended for this project: Raspberry Pi 3, Raspberry Pi 4, or Raspberry Pi 5. The Raspberry Pi Zero W or Zero 2W are likely to work as well, but the lack of ports may become a limitation as the project progresses. The 1GB Raspberry Pi 4 is a solid choice for this projects needs. Any of the aforementioned hardware can be purchased from either [Pimoroni](https://shop.pimoroni.com/), [Adafriut](https://www.adafruit.com/), or most other hobby electronics retailers.
     2. Micro SD Card
         * Any microSD card of 32GB or greater in size is recommended.
     3. RFID Reader 
